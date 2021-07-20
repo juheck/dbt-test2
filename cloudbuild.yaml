@@ -1,13 +1,26 @@
 steps:
- - name: fishtownanalytics/dbt:0.19.2
+ - id: setup
+   name: fishtownanalytics/dbt:0.19.2
    entrypoint: 'bash'
    args:
      - '-c'
      - |
+         echo "[TOOL INFORMATION]"
          dbt --version
          echo $$sakey > ./dbt-sa.json 2>/dev/null
+         echo "[INSTALLING DEPENDENCIES]"
+         dbt deps --profiles-dir./
+         echo "[TESTING CONNECTION]"
          dbt debug --profiles-dir ./  
    secretEnv: ['sakey']
+ - id: run
+   name: fishtownanalytics/dbt:0.19.2
+   entrypoint: 'bash'
+   args:
+     - '-c'
+     - |
+          echo "[DBT RUN]"
+          dbt run --profiles-dir ./ --no-version-check
 availableSecrets:
  secretManager:
    - versionName: projects/julien-test-297518/secrets/dbt-sa/versions/1
