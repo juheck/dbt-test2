@@ -1,0 +1,15 @@
+dbt-test:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      #method: oauth
+      method: service-account
+      keyfile: ./dbt-sa.json
+      project: julien-test-297518
+      dataset: dbt_test_cli
+      threads: 1
+      timeout_seconds: 300
+      location: US # Optional, one of US or EU
+      priority: interactive
+      retries: 1
