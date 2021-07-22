@@ -1,6 +1,6 @@
 steps:
  - id: setup
-   name: fishtownanalytics/dbt:0.19.2
+   name: fishtownanalytics/dbt:0.20.0
    entrypoint: 'bash'
    args:
      - '-c'
@@ -14,7 +14,7 @@ steps:
          dbt debug --profiles-dir ./  
    secretEnv: ['sakey']
  - id: run
-   name: fishtownanalytics/dbt:0.19.2
+   name: fishtownanalytics/dbt:0.20.0
    entrypoint: 'bash'
    args:
      - '-c'
