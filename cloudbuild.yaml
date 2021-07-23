@@ -1,6 +1,6 @@
 steps:
  - id: setup
-   name: fishtownanalytics/dbt:{_DBT_VERSION}
+   name: fishtownanalytics/dbt:${_DBT_VERSION}
    entrypoint: 'bash'
    args:
      - '-c'
@@ -14,7 +14,7 @@ steps:
          dbt debug --profiles-dir ./  
    secretEnv: ['sakey']
  - id: run
-   name: fishtownanalytics/dbt:{_DBT_VERSION}
+   name: fishtownanalytics/dbt:${_DBT_VERSION}
    entrypoint: 'bash'
    args:
      - '-c'
@@ -28,11 +28,11 @@ steps:
      - '-c'
      - |
         echo "[COPYING DBT FILES TO GCS]"
-        gsutil cp -r models ${_AIRFLOW_BUCKET}/{_DBT_PROJECT_PATH}
-        gsutil cp target/manifest.json ${_AIRFLOW_BUCKET}/{_DBT_PROJECT_PATH}/airflow/
-        gsutil cp profiles.yml ${_AIRFLOW_BUCKET}/{_DBT_PROJECT_PATH}/
-        gsutil cp dbt_project.yml ${_AIRFLOW_BUCKET}/{_DBT_PROJECT_PATH}/
+        gsutil cp -r models ${_AIRFLOW_BUCKET}/${_DBT_PROJECT_PATH}
+        gsutil cp target/manifest.json ${_AIRFLOW_BUCKET}/${_DBT_PROJECT_PATH}/airflow/
+        gsutil cp profiles.yml ${_AIRFLOW_BUCKET}/${_DBT_PROJECT_PATH}/
+        gsutil cp dbt_project.yml ${_AIRFLOW_BUCKET}/${_DBT_PROJECT_PATH}/
 availableSecrets:
  secretManager:
-   - versionName: projects/${PROJECT_ID}/secrets/{_SECRET_KEY}/versions/1
+   - versionName: projects/${PROJECT_ID}/secrets/${_SECRET_KEY}/versions/1
      env: sakey
