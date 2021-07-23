@@ -21,6 +21,10 @@ steps:
      - |
           echo "[DBT RUN]"
           dbt run --profiles-dir ./ --no-version-check
+   artifacts:
+    objects:
+      location: 'gs://us-east1-dbt-test-airflow-ad1799c3-bucket/data/dbt'
+      paths: ['profiles.yml', 'dbt_project.yml', 'models/*']
 availableSecrets:
  secretManager:
    - versionName: projects/julien-test-297518/secrets/dbt-sa/versions/1
