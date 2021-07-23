@@ -9,7 +9,7 @@ steps:
          dbt --version
          echo $$sakey > ./dbt-sa.json 2>/dev/null
          echo "[INSTALLING DEPENDENCIES]"
-         dbt deps --profiles-dir./
+         dbt deps --profiles-dir ./
          echo "[TESTING CONNECTION]"
          dbt debug --profiles-dir ./  
    secretEnv: ['sakey']
