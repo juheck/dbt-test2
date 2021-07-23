@@ -29,11 +29,10 @@ steps:
      - |
         echo "[COPYING DBT FILES TO GCS]"
         gsutil cp -r models  gs://us-east1-dbt-test-airflow-ad1799c3-bucket/data/dbt
-        gsutil cp target/manifest.json  gs://us-east1-dbt-test-airflow-ad1799c3-bucket/data/dbt/target/
+        gsutil cp target/manifest.json  gs://us-east1-dbt-test-airflow-ad1799c3-bucket/data/dbt/airflow/
         gsutil cp profiles.yml  gs://us-east1-dbt-test-airflow-ad1799c3-bucket/data/dbt/
         gsutil cp dbt_project.yml gs://us-east1-dbt-test-airflow-ad1799c3-bucket/data/dbt/
 availableSecrets:
  secretManager:
    - versionName: projects/julien-test-297518/secrets/dbt-sa/versions/1
      env: sakey
-     
