@@ -24,7 +24,7 @@ steps:
  - id: copy_files
    name: gcr.io/cloud-builders/gsutil
    entrypoint: 'bash'
-   args: ['-m', 'cp', '-r', 'profiles.yml', 'gs://us-east1-dbt-test-airflow-ad1799c3-bucket/data/dbt']
+   args: ['cp', '-r', 'models/*' , 'gs://us-east1-dbt-test-airflow-ad1799c3-bucket/data/dbt']
 availableSecrets:
  secretManager:
    - versionName: projects/julien-test-297518/secrets/dbt-sa/versions/1
